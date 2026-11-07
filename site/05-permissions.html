@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5. Permissions — Computer-Use &amp; Browser Agents Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<p class="masthead">Computer-Use &amp; Browser Agents Guide</p>
+<h1>5. Permissions</h1>
+<p><em>What am I actually allowing? Keep the blast radius small.</em></p>
+<h2 id="51-the-blast-radius-mindset">5.1 The blast-radius mindset</h2>
+<p>With agents, "what could go wrong" is best thought of as <strong>blast radius</strong>: if this agent has a bad day, what is the <em>maximum</em> damage?</p>
+<ul>
+<li>Agent in a cloud browser, logged out, read-only → radius ≈ whatever pages it looked at.</li>
+<li>Agent as an <strong>extension in your everyday browser</strong> → radius ≈ your whole digital life: mail, banks, saved passwords, autofill, history.</li>
+<li>Agent on a VM → radius ≈ what's in that VM plus its allowlisted network paths.</li>
+</ul>
+<p>Every permission decision below is about <strong>shrinking the radius before the run</strong>, not cleaning up after.</p>
+<h2 id="52-the-checklist-of-permissions-to-think-through">5.2 The checklist of permissions to think through</h2>
+<h3 id="screen-sessions">Screen &amp; sessions</h3>
+<ul>
+<li><strong>What can it see?</strong> Screen-recording permissions on Mac/Windows are account-wide. A screen agent sees every notification that pops up while it's there — patient health info, two-factor codes, salary letters. <strong>Close personal windows before runs.</strong></li>
+<li><strong>Which browser profile?</strong> Give it a <strong>dedicated profile</strong> (fresh, minimal, no saved passwords, no autofill), never your daily profile.</li>
+</ul>
+<h3 id="accounts">Accounts</h3>
+<ul>
+<li><strong>Never your personal login.</strong> If a task needs an account, create <strong>a dedicated account for the agent</strong>, with:</li>
+<li>an email address separate from your primary;</li>
+<li><strong>minimal privileges</strong> (read-only? comment-only? non-admin?);</li>
+<li>your own 2FA device, with a separate app account or hardware token;</li>
+<li>spending caps, if the service supports them.</li>
+<li><strong>Password managers:</strong> if you must, grant access to <em>one folder</em> containing the specific credentials for <em>this</em> task's sites — not the vault. (Even better: type the password in yourself at the moment of need; see <a href="08-readiness-checklist.html">Chapter 8</a>.)</li>
+</ul>
+<h3 id="web-writes">Web-writes</h3>
+<ul>
+<li><strong>Publishing, posting, emailing.</strong> Grant selectively: maybe "may comment here" but "may not send email ever," or "may send but only to these addresses." Many products let you lock reads vs. writes; if a product can't distinguish, that's a yellow flag.</li>
+<li><strong>Update/publishing platforms:</strong> never an "admin" role on day one; reviewer or editor first. Agents don't need "delete site" buttons.</li>
+</ul>
+<h3 id="money">Money</h3>
+<ul>
+<li><strong>Payment methods:</strong> never your daily driver card. If a task <em>must</em> pay, use a <strong>virtual card with a low dollar cap</strong> from your bank's card controls — you can raise the cap later, revoke instantly today.</li>
+<li><strong>Purchase approval:</strong> good products offer "<strong>ask me before checkout</strong>" or "confirm-cart-then-pause" modes. Turn it on for anything that spends.</li>
+</ul>
+<h3 id="filesystem-machine">Filesystem &amp; machine</h3>
+<ul>
+<li><strong>Working directories</strong> for file outputs should be one folder, not "C:\Users\you." Agents given a whole disk can <em>read</em> whole disks.</li>
+<li><strong>Downloads &amp; uploads</strong> are exfiltration paths and brand-new attacker surfaces. Restrict or review regularly.</li>
+</ul>
+<h3 id="network">Network</h3>
+<ul>
+<li><strong>Where can it go?</strong> Allowlists beat blocklists whenever a product supports them. If not, plan the amount of browsing into the task and give max-steps caps instead.</li>
+</ul>
+<h3 id="long-lived-things">Long-lived things</h3>
+<ul>
+<li><strong>Cookies / saved sessions</strong> = standing access. Self-hosted browser profiles that keep logins between runs are convenient <em>and</em> are effectively a locker full of keys. Prune old sessions periodically; re-authenticate at the frequency of your tolerance for damage.</li>
+<li><strong>API keys / service tokens</strong> the agent might carry for some products: treat as secrets. Rotate if in doubt. Never paste your keys into a live chat with an agent.</li>
+</ul>
+<h2 id="53-concrete-permission-tiers">5.3 Concrete permission tiers</h2>
+<p>A simple, copyable policy you can keep in one note:</p>
+<p><strong>Tier 0 — Observe-only.</strong> Public pages, no logins, no form-fills, screenshot-in-screenshot-out, max 15 steps, $0.
+<em>Use for: first touch on any new tool.</em></p>
+<p><strong>Tier 1 — Assisted research.</strong> Public pages plus form-fills on throwaway profiles; no submits; cloud browser or fresh profile.
+<em>Use for: comparisons, drafts, price tables.</em></p>
+<p><strong>Tier 2 — Logged-in light writes.</strong> One special account, minimal grant; writes allowed only [labels, folders, drafts, saved views, not sending]; virtual card slug for $0; approval before any submit.
+<em>Use for: inbox sorting, draft emails, sheet appends.</em></p>
+<p><strong>Tier 3 — Money &amp; identity.</strong> Real account, real payment, real-world effect. Only after <a href="08-readiness-checklist.html">Chapter 8</a>'s checklist is complete; virtual card with a low cap; human-confirm every purchase; start once and supervise fully.</p>
+<p>Escalate one tier at a time; de-escalate freely (you can always pull permissions back without any drama by blowing away cookies/profiles or rotating credentials).</p>
+<h2 id="54-watching-your-permissions-over-time">5.4 Watching your permissions over time</h2>
+<ul>
+<li><strong>Write down what you granted.</strong> A single note listing what the tool has access to (with dates) turns re-audits into a five-minute chore, not an archaeology project.</li>
+<li><strong>Spring-clean quarterly.</strong> Look at installed browser extensions, cookie jars, connected-account lists (Google/Apple/Microsoft "security" pages), and admin roles for the bots you've added.</li>
+<li><strong>When a product changes hands / changes terms</strong>, re-derive Tier 0 for it; don't grandfather trust across company boundaries you didn't choose.</li>
+</ul>
+<h2 id="55-one-last-framing">5.5 One last framing</h2>
+<p><strong>Never hand over the keys to the C-suite.</strong> Instead of "you may do anything with my email," try: "You may <em>sort</em> my email, show me three drafts, and send only the one I pick." That's one mental model swap: <strong>least privilege is not a gate to keep the agent out — it's a fence that keeps the agent <em>and</em> you inside a bounded experiment.</strong></p>
+<p>That fence — permissions — plus a budget (Chapter 6), a check habit (Chapter 7), and a checklist (Chapter 8) is most of what separates happy experimenting from a cautionary tale.</p>
+<hr />
+<p>Next: the dollar meter, in <a href="06-watching-costs.html">Chapter 6 — Watching Costs</a>.</p>
+<div class="pager"><a href="04-dry-runs.html">&larr; 4. Dry Runs</a><a href="06-watching-costs.html">6. Watching Costs &rarr;</a></div>
+<nav class="chapters">
+<h2>Chapters</h2>
+<ol><li><a href="index.html">The Guide at a Glance</a></li><li><a href="01-agents-that-use-computers.html">1. Agents That Use Computers</a></li><li><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work</a></li><li><a href="03-browser-agents.html">3. Browser Agents</a></li><li><a href="04-dry-runs.html">4. Dry Runs</a></li><li><a href="05-permissions.html">5. Permissions</a></li><li><a href="06-watching-costs.html">6. Watching Costs</a></li><li><a href="07-spotting-drift.html">7. Spotting Drift</a></li><li><a href="08-readiness-checklist.html">8. The Readiness Checklist</a></li><li><a href="09-glossary.html">9. Glossary</a></li></ol>
+</nav>
+</div>
+<div class="wrap"><footer class="copyright">A plain-English guide by Asdale Dynamics, LLC. MIT Licensed.</footer></div>
+</body>
+</html>

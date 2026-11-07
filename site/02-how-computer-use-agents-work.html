@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2. How Computer-Use Agents Work — Computer-Use &amp; Browser Agents Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<p class="masthead">Computer-Use &amp; Browser Agents Guide</p>
+<h1>2. How Computer-Use Agents Work</h1>
+<p><em>The loop: look → think → act → check.</em></p>
+<h2 id="21-the-loop-in-one-picture">2.1 The loop, in one picture</h2>
+<p>Every computer-use agent runs the same basic cycle, over and over, until it decides it's done:</p>
+<pre><code>   ┌──────────────────────────────────────────┐
+   │                                          ▼
+ [ LOOK ] ──► [ THINK ] ──► [ ACT ] ──► [ CHECK ]
+   screenshot   what's my     click /     compare new
+   (or DOM      plan? What    type /      screen against
+   snapshot)    do I click    scroll /    what i expected
+                next?         open?
+</code></pre>
+<p>That's a loop a human temp worker would recognize: <strong>see, decide, do, confirm</strong>. Modern agents can run this loop dozens of times per minute. Each turn through the loop has a cost and a chance of error, so chapters 6 and 7 are both about taming this loop.</p>
+<h2 id="22-what-seeing-means-to-an-agent">2.2 What "seeing" means to an agent</h2>
+<p>The agent's eyes are not yours. Different products give the agent different things to look at:</p>
+<ul>
+<li><strong>Screenshots</strong> — the agent receives pixels. It identifies buttons, fields, and text from the image. This is the most general (and most fragile) mode: it has to truly <em>see</em>.</li>
+<li><strong>DOM / Accessibility snapshots</strong> — for browser agents, many products hand the agent a structured outline of the page (elements, names, roles). More reliable than pixels, less human-like, and it can miss things that only render visually (canvas, some styles).</li>
+<li><strong>Hybrid</strong> — structured data to navigate, screenshots to verify. Most capable products blend both.</li>
+</ul>
+<p>You don't choose this; the product does. But it matters when things go wrong: visual-only agents can misclick due to layout quirks, while DOM-based agents can misread intent (important vs. unimportant fields).</p>
+<h2 id="23-what-thinking-means">2.3 What "thinking" means</h2>
+<p>The agent's "brain" is a large language model (LLM). Given the current screen plus its task and history, the LLM decides: <em>the next step</em>. Not the whole plan up front — usually just one step at a time, like driving.</p>
+<p>Sometimes products show you a "plan" (three bullet points) or a visible <strong>cursor/ghost mouse</strong> while it works. Some let you set <strong>max steps</strong>; some pause to ask when a command is ambiguous. All of these are about making the loop easier to supervise.</p>
+<h2 id="24-what-acting-means">2.4 What "acting" means</h2>
+<p>Actions the agent may take, from safest to spiciest:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Typical risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scroll, take screenshot</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Click on public site content</td>
+<td>Low — mostly navigation</td>
+</tr>
+<tr>
+<td>Fill / submit a form</td>
+<td>Medium — rules of the site aren't yours</td>
+</tr>
+<tr>
+<td>Create / send email, post comment</td>
+<td>Medium-high — others can see your name on it</td>
+</tr>
+<tr>
+<td>Sign in to an account</td>
+<td>High — the account is now agent-accessible</td>
+</tr>
+<tr>
+<td>Buy / pay / agree to legal text</td>
+<td>Ace-high — money and terms</td>
+</tr>
+</tbody>
+</table>
+<p>A well-built agent should ask before the high-risk steps. Products differ. Chapter 5 covers how to decide what to allow.</p>
+<h2 id="25-what-checking-means-and-why-it-cant-be-trusted-alone">2.5 What "checking" means — and why it can't be trusted alone</h2>
+<p>After acting, the agent looks at the new screen and evaluates: <em>did that do what I planned?</em> Usually it did. But the check is done by the same brain that made the mistake. If it clicked the wrong button and the resulting page is <em>plausible</em> — it may not notice. That's called <strong>self-confirmation bias</strong> in agent circles, and it's why Chapter 7 insists on <em>your own</em>, independent confirmation of important outcomes, not just watching the agent's success messages.</p>
+<h2 id="26-why-a-simple-task-takes-30-steps">2.6 Why a simple task takes 30 steps</h2>
+<p>Count the click-round-trips in "order the cheapest household paper towels":</p>
+<ol>
+<li>Open browser &amp; search.</li>
+<li>Read search results; pick the store you cared about.</li>
+<li>Search within the store; read results beyond page one; compare.</li>
+<li>Hit a cookie banner; dismiss it.</li>
+<li>Filter by brand; re-read; add to cart.</li>
+<li>Cart shows a <em>better deal on bulk</em>; reconsider.</li>
+<li>Sign-in wall; decide whether to stop or ask you.</li>
+<li>Cart review; "you're not buying the one you usually buy" check.</li>
+</ol>
+<p>Each numbered step is 2–4 turns of the loop, each turn costing tokens and wall-clock time. Ten-by-thirty ring the bell on ten-dollar-tasks: ordinary browsing is routine; <em>finishing</em> reliably is hard. This is not a knock on agents, it's the state of them; and it's why Chapters 4–7 push you toward small, regainable tasks rather than "do my whole life."</p>
+<h2 id="27-mental-model-to-keep">2.7 Mental model to keep</h2>
+<blockquote>
+<p><strong>An agent is a fast, tireless, weirdly literal temp with great typing and zero memory of what things <em>mean</em> to you.</strong></p>
+</blockquote>
+<p>Fast, tireless, literal, and temporarily dumb in familiar ways. Every remaining chapter is about supervising that temp accordingly.</p>
+<hr />
+<p>Next up: what changes when the whole world is a web page — <a href="03-browser-agents.html">Chapter 3 — Browser Agents</a>.</p>
+<div class="pager"><a href="01-agents-that-use-computers.html">&larr; 1. Agents That Use Computers</a><a href="03-browser-agents.html">3. Browser Agents &rarr;</a></div>
+<nav class="chapters">
+<h2>Chapters</h2>
+<ol><li><a href="index.html">The Guide at a Glance</a></li><li><a href="01-agents-that-use-computers.html">1. Agents That Use Computers</a></li><li><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work</a></li><li><a href="03-browser-agents.html">3. Browser Agents</a></li><li><a href="04-dry-runs.html">4. Dry Runs</a></li><li><a href="05-permissions.html">5. Permissions</a></li><li><a href="06-watching-costs.html">6. Watching Costs</a></li><li><a href="07-spotting-drift.html">7. Spotting Drift</a></li><li><a href="08-readiness-checklist.html">8. The Readiness Checklist</a></li><li><a href="09-glossary.html">9. Glossary</a></li></ol>
+</nav>
+</div>
+<div class="wrap"><footer class="copyright">A plain-English guide by Asdale Dynamics, LLC. MIT Licensed.</footer></div>
+</body>
+</html>

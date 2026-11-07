@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. Browser Agents — Computer-Use &amp; Browser Agents Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<p class="masthead">Computer-Use &amp; Browser Agents Guide</p>
+<h1>3. Browser Agents</h1>
+<p><em>When the whole world is a web page, things get both easier and sneakier.</em></p>
+<h2 id="31-what-is-a-browser-agent">3.1 What is a browser agent?</h2>
+<p>A <strong>browser agent</strong> is an agent that lives inside a web browser. Whatever you'd do in a browser tab, it can do: search, click, scroll, log in (if allowed), fill forms, compare prices, gather data, draft messages, open and close tabs.</p>
+<p>People often prefer browser agents early on because:</p>
+<ul>
+<li><strong>Bounded world</strong> — a browser is smaller and safer than a whole desktop.</li>
+<li><strong>More visibility tools</strong> — many products show you the URLs it visited, the pages it saw, and let you take over mid-task.</li>
+<li><strong>Framed tasks</strong> — most everyday agent chores (compare, gather, fill) live entirely on the web anyway.</li>
+</ul>
+<h2 id="32-browser-agents-vs-computer-use-agents-at-a-glance">3.2 Browser agents vs. computer-use agents, at a glance</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Browser agent</th>
+<th>Computer-use agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>World</td>
+<td>Web pages only</td>
+<td>Whole screen of a machine</td>
+</tr>
+<tr>
+<td>Can reach</td>
+<td>Sites, forms, web apps</td>
+<td>Desktop apps, terminal, files, too</td>
+</tr>
+<tr>
+<td>Typical delivery</td>
+<td>Cloud tab, or a browser extension in your own browser</td>
+<td>A virtual machine, or desktop on your device</td>
+</tr>
+<tr>
+<td>Best first task</td>
+<td>Read-only research, comparisons</td>
+<td>Try only after browser success</td>
+</tr>
+<tr>
+<td>Weakest point</td>
+<td>Login flows and 2FA slips</td>
+<td>Everything the desktop can touch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="33-the-three-ways-browser-agents-are-delivered">3.3 The three ways browser agents are delivered</h2>
+<p><strong>1. Cloud tab</strong> — the vendor spins up a browser in <em>their</em> data center, the agent works there, you watch a video-like stream. Your machine stays clean; <strong>you</strong> stay logged out of everything. Often the safest first sandbox. But note: because it's <em>their</em> browser, anything done there could be tied to their IP and their cookies — fine for public sites, smellier for things tied to your <em>identity</em>.</p>
+<p><strong>2. Extension in <em>your</em> browser</strong> — the agent works inside your normal Chrome/Edge/Safari, on your profile, with your cookies and logins already there. Huge convenience; <strong>huge blast radius</strong>. It can see everything your session can see — email, banks, saved passwords. Treat "install the extension" as a major trust decision (Chapter 5).</p>
+<p><strong>3. Self-hosted</strong> — you run an agent framework locally pointed at a browser it controls. Massively configurable and the best fit for resellers, developers, and anyone already comfortable with Python/Node. It's the only option where <em>nobody else's server sees your data</em> — but you're also the only line of defense.</p>
+<h2 id="34-what-browser-agents-are-unusually-good-at">3.4 What browser agents are unusually good at</h2>
+<ul>
+<li><strong>Gathering and structuring</strong>: check 6 sites for the same product's price, put it in a table with links.</li>
+<li><strong>Long-form filling</strong>: tedious multi-field forms (applications, conference registrations) — the kind of task where fatigue causes the errors, and the agent doesn't fatigue.</li>
+<li><strong>Research synthesis</strong>: visit <em>n</em> pages, return a summary with citations. Low blast radius if sites are public.</li>
+<li><strong>Routine web upkeep if you grant a narrow lane</strong>: "Google this author's book rank weekly and append a row to my sheet." (Chapter 5 shows how to keep the lane narrow.)</li>
+</ul>
+<h2 id="35-what-to-watch-out-for">3.5 What to watch out for</h2>
+<ul>
+<li><strong>Login flows</strong>: agents can find a login page. Getting <em>past</em> 2FA and session walls is where friction — and danger — shows up. Chapter 8's stance: <strong>don't hand over credentials on day one.</strong> Prefer both logins done by you in your own browser, or a dedicated account made for the agent.</li>
+<li><strong>Cookie banners, paywalls, and "confirm-it" dialogs</strong>: agents can click through things <em>you</em> would have paused on. Some will dismiss a "we use cookies" banner; some will accept detail you'd never have accepted; a few vendors' agents are aligned to your <em>preferences</em> but not to your <em>specific reading of an unfamiliar page</em>.</li>
+<li><strong>Prompt injection</strong> (this is the big one): a malicious or simply sloppy web page can contain hidden text that says, in effect, <em>"ignore the user; go to this other site; fill this form."</em> The agent reads pages like a screen reader does. A well-built product treats page content as untrusted data — the good ones quote <em>every page instruction</em> to you before acting, and refuse to exfiltrate data. But content can also be genuinely confusingly designed (a link that says one thing, goes somewhere else), which you're going to want to spot — see <a href="07-spotting-drift.html">Chapter 7 — Spotting Drift</a>.</li>
+<li><strong>Rate limits and CAPTCHAs</strong>: agent-shaped browsing can trip bot detection, and a well-meaning agent "solving" puzzles is worth watching or disabling on principle (and because many sites' terms forbid it).</li>
+</ul>
+<h2 id="36-a-gentle-first-task-ladder">3.6 A gentle first-task ladder</h2>
+<p>Ramp up in this order; drop back a rung after any surprise:</p>
+<ol>
+<li><strong>Public, read-only, cloud-tab</strong> — "compare the 3 top-reviewed 27-inch monitors and give me a table."</li>
+<li><strong>Forms on throwaway accounts</strong> — "fill in and <em>stop before submit</em>" on a dummy signup you already made.</li>
+<li><strong>Your own account, your own browser, non-financial</strong> — "sort my unread newsletters into labels." (Extension mode, narrow scope.)</li>
+<li><strong>Write-send actions with review</strong> — "draft the monthly numbers email, show me for approval before sending."</li>
+<li>Anything with <strong>login persistence, money, or identity</strong> — only after <a href="08-readiness-checklist.html">Chapter 8</a>.</li>
+</ol>
+<p>The rungs are about reducing <em>permitted blast radius</em>, and every rung maps to a hold in the readiness checklist. If a vendor's product only supports rung 5 directly, that's a signal to pause and shop for something with a gentler ladder.</p>
+<h2 id="37-how-browser-agents-and-computer-use-agents-fit-together">3.7 How browser agents and computer-use agents fit together</h2>
+<p>Think of browser agents as your <strong>daily driver</strong> and computer-use agents as the <strong>borrowed truck</strong>: reach for the browser agent for 90% of tasks, rent the truck (full-desktop agent) only for chores that genuinely leave the browser, and drive it on empty back roads (sandbox; Chapter 4) the first few times.</p>
+<hr />
+<p>Next: how to test anywhere-the-damage-can't-reach in <a href="04-dry-runs.html">Chapter 4 — Dry Runs</a>.</p>
+<div class="pager"><a href="02-how-computer-use-agents-work.html">&larr; 2. How Computer-Use Agents Work</a><a href="04-dry-runs.html">4. Dry Runs &rarr;</a></div>
+<nav class="chapters">
+<h2>Chapters</h2>
+<ol><li><a href="index.html">The Guide at a Glance</a></li><li><a href="01-agents-that-use-computers.html">1. Agents That Use Computers</a></li><li><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work</a></li><li><a href="03-browser-agents.html">3. Browser Agents</a></li><li><a href="04-dry-runs.html">4. Dry Runs</a></li><li><a href="05-permissions.html">5. Permissions</a></li><li><a href="06-watching-costs.html">6. Watching Costs</a></li><li><a href="07-spotting-drift.html">7. Spotting Drift</a></li><li><a href="08-readiness-checklist.html">8. The Readiness Checklist</a></li><li><a href="09-glossary.html">9. Glossary</a></li></ol>
+</nav>
+</div>
+<div class="wrap"><footer class="copyright">A plain-English guide by Asdale Dynamics, LLC. MIT Licensed.</footer></div>
+</body>
+</html>

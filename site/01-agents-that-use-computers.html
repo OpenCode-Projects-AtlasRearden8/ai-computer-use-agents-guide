@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1. Agents That Use Computers — Computer-Use &amp; Browser Agents Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<p class="masthead">Computer-Use &amp; Browser Agents Guide</p>
+<h1>1. Agents That Use Computers</h1>
+<p><em>A plain-English tour of agents that click, type, and browse for you.</em></p>
+<h2 id="11-the-chatbot-vs-the-agent">1.1 The chatbot vs. the agent</h2>
+<p>You already know one kind of AI: the <strong>chatbot</strong>. You type a question, it types an answer. It can write an email for you — but <em>you</em> copy it, paste it, hit send.</p>
+<p>A <strong>computer-use agent</strong> is a different animal. You say the goal — <em>"find me the cheapest flight April 4–7, then draft an email to Priya with the options"</em> — and the agent does the whole thing itself:</p>
+<ol>
+<li>It opens a browser window.</li>
+<li>It looks at the page and decides where to click.</li>
+<li>It clicks, types, scrolls, fills forms.</li>
+<li>It reads the results and keeps going.</li>
+<li>It stops and shows you what it did.</li>
+</ol>
+<p>The difference isn't intelligence, it's <strong>hands</strong>. A chatbot has a mouth. An agent has a mouth, eyes, and a mouse.</p>
+<h2 id="12-browser-agents-vs-computer-use-agents">1.2 Browser agents vs. computer-use agents</h2>
+<p>You'll meet two flavors, and it's worth keeping them straight:</p>
+<p><strong>Browser agents</strong> operate <em>inside a web browser only</em>. The web is the whole world to them. They can fill forms, search, compare prices, and navigate sites — but they can't touch your desktop apps, terminal, or files.</p>
+<p><strong>Computer-use agents</strong> operate <em>the whole screen</em> on a real or virtual machine. Anything you could do with a mouse and keyboard — export a spreadsheet from a desktop app, run a terminal command, arrange lightroom photos — is theoretically within reach. With the whole desktop comes the whole blast radius.</p>
+<p>(Chapter 3 covers browser agents in detail; most of Chapter 2's loop applies to both.)</p>
+<h2 id="13-wait-isnt-this-just-macros-or-rpa">1.3 Wait — isn't this just macros? Or RPA?</h2>
+<p>Fair question. You may have heard of:</p>
+<ul>
+<li><strong>Macros &amp; script recorders</strong> — repeat a fixed series of steps. Break the moment a button moves or a popup appears.</li>
+<li><strong>Robotic Process Automation (RPA)</strong> — enterprise software that automates application workflows via fixed rules and integration points. Powerful, but someone engineers every rule up front.</li>
+</ul>
+<p>Agents differ at the foundation: they are <strong>vision-and-judgment driven</strong>. They look at whatever is actually on the screen, like a human temp worker would, and adapt when the screen isn't what they expected. That means:</p>
+<ul>
+<li>✅ They can handle pages and apps that were <strong>never designed for automation</strong>.</li>
+<li>✅ They can <strong>recover</strong> when a popup, cookie banner, or rename appears.</li>
+<li>❌ They can also make <strong>plausible-looking mistakes</strong> a script would never make — like clicking the <em>wrong</em> "Delete."</li>
+<li>❌ They are typically much <strong>slower and more expensive</strong> than a script, per step.</li>
+</ul>
+<p>A macro follows a map. An agent drives by looking out the windshield. Most of this guide is about the windshield style of risk.</p>
+<h2 id="14-what-good-agents-are-actually-good-at">1.4 What good agents are actually good at</h2>
+<p>Based on where everyday tools stand today, agents tend to shine at tasks that are:</p>
+<ul>
+<li><strong>Boring but well-specified</strong>: gather all your own recent orders across 4 sites into one table.</li>
+<li><strong>Read-heavy, write-light</strong>: research, compare, summarize, draft.</li>
+<li><strong>Low stakes per step</strong>: browsing public pages, searching, filling test forms.</li>
+<li><strong>Bounded in time and scope</strong>: "spend at most 20 clicks" beats "handle my whole inbox."</li>
+</ul>
+<p>They struggle with tasks that are:</p>
+<ul>
+<li><strong>Long-chain and unforgiving</strong>, where one wrong click ruins everything (e.g., final purchase confirmations).</li>
+<li><strong>Vague</strong>, where the goal requires taste or context the agent can't infer ("clean up my photos" — what does <em>clean</em> mean?).</li>
+<li><strong>High-stakes outputs</strong> summed up from messy inputs (anything involving your money, identity, or legal standing).</li>
+</ul>
+<h2 id="15-the-pitch-and-the-catch">1.5 The pitch and the catch</h2>
+<p>The pitch: <strong>general-purpose automation without engineers.</strong> Anyone who can describe a task can have it done. That's genuinely new, and for nurse-turned-author workflows like "check my book's rank and post the numbers into a sheet," it can feel like magic.</p>
+<p>The catch: <strong>agents fail like interns, not like software.</strong> Software fails with an error message. An agent can fail by doing the <em>wrong thing confidently</em> — clicking "Similar" instead of "Exact," buying the size-up, replying <em>Cc: everyone</em>. So the operating stance in this guide is:</p>
+<blockquote>
+<p><strong>Try it where failure is cheap; supervise closely; verify outputs like you'd verify a temp employee's work; and only escalate trust as performance earns it.</strong></p>
+</blockquote>
+<p>That stance has a name in the next chapters: dry runs (Chapter 4), least-privilege permissions (Chapter 5), cost caps (Chapter 6), drift-watching (Chapter 7), and a readiness gate before secrets or purchases (Chapter 8).</p>
+<h2 id="16-quick-quiz">1.6 Quick quiz</h2>
+<ol>
+<li>Your automation breaks every time the site redesigns a button. Fixed script or agent? <em>(Agent — it re-reads the screen each time.)</em></li>
+<li>The task requires opening your tax software, a desktop app, filling from a PDF. Screen-only agent or browser-only agent? <em>(Screen-only — computer-use agent.)</em></li>
+<li>You want it to order your groceries. Right now? <em>(Not yet — read Chapter 8 first.)</em></li>
+</ol>
+<hr />
+<p>Next: what's going on under the hood in <a href="02-how-computer-use-agents-work.html">Chapter 2 — How Computer-Use Agents Work</a>.</p>
+<div class="pager"><a href="index.html">&larr; The Guide at a Glance</a><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work &rarr;</a></div>
+<nav class="chapters">
+<h2>Chapters</h2>
+<ol><li><a href="index.html">The Guide at a Glance</a></li><li><a href="01-agents-that-use-computers.html">1. Agents That Use Computers</a></li><li><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work</a></li><li><a href="03-browser-agents.html">3. Browser Agents</a></li><li><a href="04-dry-runs.html">4. Dry Runs</a></li><li><a href="05-permissions.html">5. Permissions</a></li><li><a href="06-watching-costs.html">6. Watching Costs</a></li><li><a href="07-spotting-drift.html">7. Spotting Drift</a></li><li><a href="08-readiness-checklist.html">8. The Readiness Checklist</a></li><li><a href="09-glossary.html">9. Glossary</a></li></ol>
+</nav>
+</div>
+<div class="wrap"><footer class="copyright">A plain-English guide by Asdale Dynamics, LLC. MIT Licensed.</footer></div>
+</body>
+</html>

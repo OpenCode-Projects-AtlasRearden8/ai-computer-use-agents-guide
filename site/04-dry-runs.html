@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4. Dry Runs — Computer-Use &amp; Browser Agents Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<p class="masthead">Computer-Use &amp; Browser Agents Guide</p>
+<h1>4. Dry Runs</h1>
+<p>Test where failure is <em>cheap</em>, before it is expensive.</p>
+<h2 id="41-what-is-a-dry-run">4.1 What is a dry run?</h2>
+<p>A <strong>dry run</strong> is running the same agent task in a place where nothing important can be damaged. The agent behaves exactly as it would in real life; the blast radius is zero. Do this before every first run of a new task, a new tool, or a new permission.</p>
+<p>The habit: <strong>write the task, dry-run the task, then run the task in the real world — in that order, every time.</strong> It adds maybe ten minutes, and it's the single biggest trust-builder in this guide.</p>
+<h2 id="42-your-four-dry-run-venues">4.2 Your four dry-run venues</h2>
+<p>Pick the cheapest venue that covers the task:</p>
+<p><strong>1. Ask-for-a-plan-only</strong></p>
+<p>Many agent products can <strong>propose a step list without executing anything</strong>. Ask: <em>"Before doing anything, list the steps you'd take and what you'd click first."</em> Cheap, instant, catches wrong priorities 90% of the time. If the vendor shows only the outcome and never its plan, pick a different product early on.</p>
+<p><strong>2. Throwaway browser profile / cloud tab</strong></p>
+<p>The agent runs in a browser where:
+- you are <strong>logged out of everything</strong>, or
+- a <strong>new profile</strong> with zero cookies and no saved passwords, or
+- it's a <strong>cloud browser</strong> owned by the vendor.</p>
+<p>Result: the agent can browse, click, and fill forms, but it can't touch your mail, bank, or files. This is the sweet-spot sandbox for a <em>new task's first rehearsal</em>.</p>
+<p><strong>3. Sandbox / disposable virtual machine</strong></p>
+<p>A virtual machine (VirtualBox, VMware, cloud "AI VM" options many vendors offer) or a spare laptop. Inside, the agent has a full desktop to roam, and every bad click is contained. Ideal for computer-use agents that need to touch apps, not just tabs. Snapshots are your friend: restore to the pre-run state after each rehearsal.</p>
+<p><strong>4. Local mock targets</strong></p>
+<p>For the web-flavored tasks, you can point practice at sandboxes you control:
+- <strong>your own dummy site</strong>: any free static hosting, or <code>python3 -m http.server</code> on your machine, and a simple 3-field form.
+- a <strong>local copy of the target page</strong> — most browsers have <em>"Save page as → complete"</em> — then open it from disk. If the agent can fill <em>your copy</em> of the form reliably, the <em>real</em> one is likely (not guaranteed) similar.</p>
+<p>Mock anything with a submit button or reply-all. If your dry-run form has a CAPTCHA the agent will try to solve, that's a finding — you don't want that in production.</p>
+<h2 id="43-a-dry-run-script-90-seconds">4.3 A dry-run script (90 seconds)</h2>
+<p>Run your task in the sandbox and grade these five questions:</p>
+<ol>
+<li><strong>Did it accomplish the goal?</strong> (Some products will happily declare success at step 3/10. See the CHECK loop in <a href="02-how-computer-use-agents-work.html">Chapter 2</a>.)</li>
+<li><strong>Where did it hesitate or thrash?</strong> (Sites where it endlessly scrolls or repeatedly clicks dead buttons — that's where your real-world task will burn cost on run-after-run.)</li>
+<li><strong>What did it read where you didn't expect it to read?</strong> Cookie banners, fine print, "similar products," other tabs? Note anything you'd want fenced off.</li>
+<li><strong>What did it <em>write</em> anywhere?</strong> Fills, clicks with side effects, cookies accepted, anything created. These become your "ask me first" list in <a href="05-permissions.html">Chapter 5</a>.</li>
+<li><strong>Did it ever invent an action you didn't ask for?</strong> Any "while I was at it" improvisation is a big red flag for unsupervised runs.</li>
+</ol>
+<p>Then write the results down. A five-minute scratch note ("got stuck at 2FA wall; clicked 'similar' once; handled coupon code fine") becomes <em>your</em> cheat sheet for the real run.</p>
+<h2 id="44-common-dry-run-findings-and-what-they-mean">4.4 Common dry-run findings (and what they mean)</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>It stopped at the login wall and asked you</td>
+<td><strong>Good sign.</strong> This is the behavior you want when you <em>aren't</em> watching.</td>
+</tr>
+<tr>
+<td>It never asked, and typed a password into a site you didn't intend</td>
+<td>Red flag. Restrict network; see <a href="05-permissions.html">Chapter 5</a>.</td>
+</tr>
+<tr>
+<td>It clicked "similar product" instead of the exact one</td>
+<td>Specify stricter criteria and re-run: "exact SKU, show me before adding."</td>
+</tr>
+<tr>
+<td>It abandoned the task and summarized instead</td>
+<td>Lower your bar, or split the task: one agent call per sub-step.</td>
+</tr>
+<tr>
+<td>It "solved" a CAPTCHA / bot-check</td>
+<td>Turn off or vendor-configure that; you almost never want an agent guessing these.</td>
+</tr>
+<tr>
+<td>It takes 40 steps and stalls</td>
+<td>Split into a smaller task or script the boring part(s); agents aren't the cheapest tool for everything.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="45-rehearsal-rules-of-thumb">4.5 Rehearsal rules of thumb</h2>
+<ul>
+<li><strong>Dry-run every <em>new</em></strong> — new tool, new task, new site, new permission. Even seasoned tools change their behavior when you new-up a permission.</li>
+<li><strong>Dry-run the <em>failure paths</em>, not just the happy path.</strong> Ask the sandbox agent: "what do you do if the coupon code is rejected?" A wrong answer in the sandbox is free; a wrong answer in checkout is not.</li>
+<li><strong>Dry-run your abort mechanism.</strong> Practice stopping it mid-run, in the sandbox, with the <em>same hand</em> you'd use in real life. Under pressure you'll do whatever you practiced.</li>
+<li><strong>Snapshot &amp; restore</strong> for VM-style venues; <strong>clear or use throwaway profiles</strong> for browser venues, so runs don't inherit state you don't mean to give them.</li>
+</ul>
+<h2 id="46-when-not-to-bother-with-a-dry-run">4.6 When <em>not</em> to bother with a dry run</h2>
+<p>If the task is read-only, on a public site, in a cloud browser, with no logins, max-steps capped, and costs capped — a full rehearse-and-grade cycle is overkill; just glance at the plan it proposes. Dry runs are a tool, not a religion.</p>
+<hr />
+<p>Next: what exactly you're granting, in <a href="05-permissions.html">Chapter 5 — Permissions</a>.</p>
+<div class="pager"><a href="03-browser-agents.html">&larr; 3. Browser Agents</a><a href="05-permissions.html">5. Permissions &rarr;</a></div>
+<nav class="chapters">
+<h2>Chapters</h2>
+<ol><li><a href="index.html">The Guide at a Glance</a></li><li><a href="01-agents-that-use-computers.html">1. Agents That Use Computers</a></li><li><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work</a></li><li><a href="03-browser-agents.html">3. Browser Agents</a></li><li><a href="04-dry-runs.html">4. Dry Runs</a></li><li><a href="05-permissions.html">5. Permissions</a></li><li><a href="06-watching-costs.html">6. Watching Costs</a></li><li><a href="07-spotting-drift.html">7. Spotting Drift</a></li><li><a href="08-readiness-checklist.html">8. The Readiness Checklist</a></li><li><a href="09-glossary.html">9. Glossary</a></li></ol>
+</nav>
+</div>
+<div class="wrap"><footer class="copyright">A plain-English guide by Asdale Dynamics, LLC. MIT Licensed.</footer></div>
+</body>
+</html>

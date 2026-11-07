@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8. The Readiness Checklist — Computer-Use &amp; Browser Agents Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<p class="masthead">Computer-Use &amp; Browser Agents Guide</p>
+<h1>8. The Readiness Checklist</h1>
+<p><em>Before you hand over passwords or purchases.</em></p>
+<p>You've dry-ran the task (<a href="04-dry-runs.html">Chapter 4</a>), you know your permission tier (<a href="05-permissions.html">Chapter 5</a>), you've set the caps (<a href="06-watching-costs.html">Chapter 6</a>), and you know what drift smells like (<a href="07-spotting-drift.html">Chapter 7</a>). This page is the <strong>gate</strong> you walk through the first time an agent will touch anything valuable: a password, a payment, a purchase, or anything with your name on a public outcome.</p>
+<h2 id="81-print-or-copy-this-list">8.1 Print-or-copy this list</h2>
+<p>Work top to bottom. <strong>If you can't check an item, delay the task</strong> — the checklist is in this order on purpose.</p>
+<h3 id="goal-scope">Goal &amp; scope</h3>
+<ul>
+<li><input type="checkbox" disabled> I can state the desired <em>end state</em> in one sentence, and I'd recognize it if an agent weirdly achieved it.</li>
+<li><input type="checkbox" disabled> The task has a defined <strong>stop point</strong> ("stop before checkout," "draft only, don't send," "stop at the cart").</li>
+<li><input type="checkbox" disabled> I've decided what the agent <strong>must not</strong> do, and whenever possible I've fenced it with product features, not just hope.</li>
+</ul>
+<h3 id="plan-rehearsal">Plan &amp; rehearsal</h3>
+<ul>
+<li><input type="checkbox" disabled> I've seen (or asked for) the <strong>step plan</strong> it intends to follow, and it matches the goal.</li>
+<li><input type="checkbox" disabled> I've completed a <strong>dry run</strong> in a sandbox (<a href="04-dry-runs.html">Chapter 4</a>) — including one rehearsal of the failure path ("what if the code is rejected?").</li>
+<li><input type="checkbox" disabled> I know the <strong>abort move</strong> for this tool (where's the pause/stop button, literally) and I've used it once.</li>
+</ul>
+<h3 id="supervision">Supervision</h3>
+<ul>
+<li><input type="checkbox" disabled> I'll be <strong>within arm's reach</strong> for this whole run — no "start it and walk the dog" for first-touch tasks or money tasks.</li>
+<li><input type="checkbox" disabled> I've set <strong>max steps</strong>, a <strong>dollar cap</strong>, and a <strong>time cap</strong> on this run (<a href="06-watching-costs.html">Chapter 6</a>).</li>
+<li><input type="checkbox" disabled> I've scheduled when I will <strong>verify the outcome independently</strong> — my own eyes on the source of truth — <em>within the same day</em>.</li>
+</ul>
+<h3 id="secrets">Secrets</h3>
+<ul>
+<li><input type="checkbox" disabled> <strong>No password will be typed into omnipresent sight.</strong> If logins are needed: either I type the password <em>myself</em> at the moment needed, or the agent has a <strong>dedicated account</strong> created for it (<a href="05-permissions.html">Chapter 5</a>) — minimum for the task — never my daily driver.</li>
+<li><input type="checkbox" disabled> My <strong>password manager</strong> is not fully open to the task (not the whole vault: one folder or manual entry at the moment of need).</li>
+<li><input type="checkbox" disabled> My <strong>2FA stays on</strong> for the account, on <em>my</em> device — the agent shows me a code to type, not a permanent session token grant.</li>
+<li><input type="checkbox" disabled> No personal data the agent <em>doesn't need for this step</em> is within its context (close other tabs; clean the profile; task-specific cookie profile).</li>
+</ul>
+<h3 id="money-irreversibility">Money &amp; irreversibility</h3>
+<ul>
+<li><input type="checkbox" disabled> Any payment goes through a <strong>virtual card</strong> or other instrument with a <strong>low cap and instant power-off</strong>, not my main card.</li>
+<li><input type="checkbox" disabled> I've confirmed the steps the agent will take at <strong>checkout / submit / send</strong> — the atomic points where clicking quietly becomes an obligation.</li>
+<li><input type="checkbox" disabled> If the task is irreversible (sending, buying, publishing, deleting): the agent <strong>must pause for explicit approval</strong> before that step, and I've set that approval expectation in the product if it has the feature.</li>
+<li><input type="checkbox" disabled> I know <strong>how to reverse</strong> the common accidental outcomes (unsubscribe here, edit inbox there, card-freeze number saved somewhere) — or, where irreversible, I've accepted that specific risk in waking hours, not at 11 pm.</li>
+</ul>
+<h3 id="trust-math">Trust math</h3>
+<ul>
+<li><input type="checkbox" disabled> This tool has earned its tier checkbook-style: I know its <strong>logged track record</strong> on me (quietly trivial things scrolling; not "trust me" marketing).</li>
+<li><input type="checkbox" disabled> The <strong>vendor's policies</strong> aren't actively across my red lines (screen recording, retention, training on my data) — I checked the pages I would <em>only</em> check if I cared.</li>
+</ul>
+<h2 id="82-rulebook-for-passwords-a-mini-chapter">8.2 Rulebook for passwords (a mini chapter)</h2>
+<p>Passwords are the single highest-leverage thing you can surrender to an agent, so be weirdly particular:</p>
+<ol>
+<li><strong>Type it yourself.</strong> For most personal-account tasks, you <em>type</em> the password while the agent waits. Adds fifteen seconds every time; costs one minor annoyance; removes the entire exfiltration path.</li>
+<li><strong>Dedicated account &gt; your account.</strong> When the agent truly needs ongoing persistent access (e.g., a "monitoring" agent for your marketplace listings), create max-minimal accounts — dedicated email, unique strong password, 2FA to your phone, spending/rate limits where offered — and <em>treat it like a temp's badge</em>: rotate credentials on schedule.</li>
+<li><strong>Never paste your password into a chat with any agent.</strong> Beyond obvious exfiltration, chat logs are often retained by vendors; a memorable phrase typed <em>to an assistant</em> is a credential leak with extra steps.</li>
+<li><strong>Shared folders only.</strong> If a password manager integration is genuinely required, share a <em>single-item</em> or <em>single-folder</em> grant, and audit it quarterly.</li>
+<li><strong>Session expiry is a feature.</strong> After a run, log the agent's session out (just as you'd log out a shared computer). Standing logged-in browser profiles for agents are convenience bought with standing risk.</li>
+</ol>
+<h2 id="83-rulebook-for-purchases">8.3 Rulebook for purchases</h2>
+<p>Purchases concentrate cost and irreversibility in a single click, so be extra deliberate:</p>
+<ol>
+<li><strong>First purchase with an agent = supervised pilot</strong>: one small, low-anger-if-wrong item (if you like the idea of agent shopping, try it as <em>curation</em> first — "find me 3 candidates and links," and you click "buy").</li>
+<li><strong>You click "buy."</strong> Good practice: the agent curates, adds to cart, and <em>you</em> execute the final payment step. If your tooling must auto-balance money, use the tier-3 rules (<a href="05-permissions.html">Chapter 5</a>): dedicated instrument, tight ceiling, one-item scope, full supervision, immediate reconciliation.</li>
+<li><strong>After-purchase reconciliation the same day:</strong> does the order page show what the agent claimed? Watch your card activity for the next 72 hours if the agent stored a payment.</li>
+<li><strong>Subscription gotchas:</strong> agents following instructions like "start the free trial" can carry real-world legal weight. If it clicks "agree" on your behalf — you did, under the vendor's terms. Read enough <em>before</em> the pilot, and prefer tasks not entangled with agreements at all.</li>
+</ol>
+<h2 id="84-gono-go-intuition-aid">8.4 Go/no-go intuition aid</h2>
+<table>
+<thead>
+<tr>
+<th>If…</th>
+<th>Then…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>You cannot state the stop point in one sentence</td>
+<td>Not ready. Tighten the ask.</td>
+</tr>
+<tr>
+<td>Caps are unset</td>
+<td>Not ready. 5 minutes. (<a href="06-watching-costs.html">Chapter 6</a>)</td>
+</tr>
+<tr>
+<td>It's your main password, your main card</td>
+<td>Not ready. Dedicated account / virtual card, or type it yourself.</td>
+</tr>
+<tr>
+<td>First real-world run with a <em>new</em> tool, and it's money/identity</td>
+<td>Not ready. Do a second dry run with the failure path.</td>
+</tr>
+<tr>
+<td>Dry run passed, caps set, fences drawn, you're free to watch until done</td>
+<td><strong>GO.</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="85-final-word">8.5 Final word</h2>
+<p>None of this is about fear. It's the same self-protection any nurse, parent, or business owner already applies to <em>anyone</em> new with access to their life — <strong>graduated trust, with the trust earned in bulk and revoked in an instant.</strong> (You know the line nurses say about no exceptions being how the checklist saves everyone: it's only ever <em>sensible</em> constraints when you feel it's being a downer.)</p>
+<p>The whole guide in one breath: <strong>sandbox it, fence it, cap it, watch it, gate the secrets.</strong> Thank you for sticking to every chapter — now go and automate, kindly.</p>
+<hr />
+<p>Last stop: all the vocabulary in <a href="09-glossary.html">Chapter 9 — Glossary</a>. And for connecting agents to <em>tools</em> more generally (APIs, MCP), see the companion <strong>agents-and-mcp-handbook</strong>; for dividing work among <em>many</em> agents, see <strong>multi-agent-teams-guide</strong>.</p>
+<div class="pager"><a href="07-spotting-drift.html">&larr; 7. Spotting Drift</a><a href="09-glossary.html">9. Glossary &rarr;</a></div>
+<nav class="chapters">
+<h2>Chapters</h2>
+<ol><li><a href="index.html">The Guide at a Glance</a></li><li><a href="01-agents-that-use-computers.html">1. Agents That Use Computers</a></li><li><a href="02-how-computer-use-agents-work.html">2. How Computer-Use Agents Work</a></li><li><a href="03-browser-agents.html">3. Browser Agents</a></li><li><a href="04-dry-runs.html">4. Dry Runs</a></li><li><a href="05-permissions.html">5. Permissions</a></li><li><a href="06-watching-costs.html">6. Watching Costs</a></li><li><a href="07-spotting-drift.html">7. Spotting Drift</a></li><li><a href="08-readiness-checklist.html">8. The Readiness Checklist</a></li><li><a href="09-glossary.html">9. Glossary</a></li></ol>
+</nav>
+</div>
+<div class="wrap"><footer class="copyright">A plain-English guide by Asdale Dynamics, LLC. MIT Licensed.</footer></div>
+</body>
+</html>
